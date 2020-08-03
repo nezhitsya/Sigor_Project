@@ -2,7 +2,6 @@ package com.example.sigor;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -18,8 +17,8 @@ public class FindActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_find);
 
-        email = findViewById(R.id.email);
-        username = findViewById(R.id.username);
+        email = findViewById(R.id.emailText);
+        username = findViewById(R.id.usernameText);
         nickname = findViewById(R.id.nickname);
         confirm = findViewById(R.id.confirm);
         back = findViewById(R.id.back);

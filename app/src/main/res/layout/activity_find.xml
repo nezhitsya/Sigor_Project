@@ -15,7 +15,7 @@
         android:hint="NickName"
         android:padding="10dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/username" />
+        app:layout_constraintTop_toBottomOf="@+id/usernameText" />
 
     <TextView
         android:id="@+id/textView14"
@@ -27,7 +27,7 @@
         app:layout_constraintStart_toStartOf="@+id/nickname" />
 
     <EditText
-        android:id="@+id/username"
+        android:id="@+id/usernameText"
         android:layout_width="369dp"
         android:layout_height="65dp"
         android:layout_marginStart="20dp"
@@ -43,8 +43,8 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:text="UserName"
-        app:layout_constraintBottom_toTopOf="@+id/username"
-        app:layout_constraintStart_toStartOf="@+id/username" />
+        app:layout_constraintBottom_toTopOf="@+id/usernameText"
+        app:layout_constraintStart_toStartOf="@+id/usernameText" />
 
     <TextView
         android:id="@+id/textView13"
@@ -55,11 +55,11 @@
         android:layout_marginBottom="211dp"
         android:text="Email"
         app:layout_constraintBottom_toTopOf="@+id/textView14"
-        app:layout_constraintStart_toStartOf="@+id/email"
+        app:layout_constraintStart_toStartOf="@+id/emailText"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/email"
+        android:id="@+id/emailText"
         android:layout_width="369dp"
         android:layout_height="0dp"
         android:layout_marginStart="20dp"

@@ -23,12 +23,12 @@ public class RegisterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
-        final EditText usernameText = findViewById(R.id.username);
-        final EditText emailText = findViewById(R.id.email);
-        final EditText passwordText = findViewById(R.id.password);
-        final EditText password2Text = findViewById(R.id.password2);
-        final TextView register = findViewById(R.id.register);
-        final TextView txt_login = findViewById(R.id.txt_login);
+        final EditText usernameText = findViewById(R.id.usernameText);
+        final EditText emailText = findViewById(R.id.emailText);
+        final EditText passwordText = findViewById(R.id.passwordText);
+        final EditText password2Text = findViewById(R.id.password2Text);
+        TextView register = findViewById(R.id.register);
+        TextView txt_login = findViewById(R.id.txt_login);
 
         // 로그인 화면 전환
         txt_login.setOnClickListener(new View.OnClickListener() {
@@ -48,18 +48,18 @@ public class RegisterActivity extends AppCompatActivity {
                 String password2 = password2Text.getText().toString();
 
                 // 입력하지 않은 칸 존재시 발생하는 이벤트
-                if(email.equals("") & password.equals("") & username.equals("")) {
+                if (email.equals("") & password.equals("") & username.equals("")) {
                     AlertDialog.Builder builder = new AlertDialog.Builder(RegisterActivity.this);
-                    Object dialog = builder.setMessage("비밀번호가 일치하지 않습니다.");
+                    builder.setMessage("빈 칸을 모두 입력해주세요.");
                     builder.setPositiveButton("OK", null);
                     builder.create();
-                    ((AlertDialog.Builder) dialog).show();
+                    builder.show();
                     return;
                 }
                 // 비밀번호가 일치하지 않을 시 발생하는 이벤트
-                if(password.equals(password2)) {
+                if (!(password.equals(password2))) {
                     AlertDialog.Builder builder = new AlertDialog.Builder(RegisterActivity.this);
-                    builder.setMessage("빈 칸을 모두 입력해주세요.");
+                    builder.setMessage("비밀번호가 일치하지 않습니다.");
                     builder.setPositiveButton("OK", null);
                     builder.create();
                     builder.show();
@@ -72,7 +72,7 @@ public class RegisterActivity extends AppCompatActivity {
                         try {
                             JSONObject jsonResponse = new JSONObject(response);
                             boolean success = jsonResponse.getBoolean("success");
-                            if(success) {
+                            if (success) {
                                 AlertDialog.Builder builder = new AlertDialog.Builder(RegisterActivity.this);
                                 builder.setMessage("Sign up!");
                                 builder.setPositiveButton("OK", null);
@@ -82,7 +82,7 @@ public class RegisterActivity extends AppCompatActivity {
                                 RegisterActivity.this.startActivity(intent);
                             } else {
                                 AlertDialog.Builder builder = new AlertDialog.Builder(RegisterActivity.this);
-                                builder.setMessage("Fail to Sign up!");
+                                builder.setMessage("Sign up Failed!");
                                 builder.setNegativeButton("OK", null);
                                 builder.create();
                                 builder.show();
