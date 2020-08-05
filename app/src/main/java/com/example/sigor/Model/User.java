@@ -2,13 +2,13 @@ package com.example.sigor.Model;
 
 public class User {
 
-    private String email;
+    private String username;
     private String nickname;
     private String imageurl;
     private String bio;
 
     public User(String email, String nickname, String imageurl, String bio) {
-        this.email = email;
+        this.username = email;
         this.nickname = nickname;
         this.imageurl = imageurl;
         this.bio = bio;
@@ -18,12 +18,12 @@ public class User {
 
     }
 
-    public String getEmail() {
-        return email;
+    public String getUsername() {
+        return username;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setUsername(String email) {
+        this.username = username;
     }
 
     public String getNickname() {

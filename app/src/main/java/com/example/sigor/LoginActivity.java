@@ -23,8 +23,8 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        final EditText emailText = findViewById(R.id.emailText);
-        final EditText passwordText = findViewById(R.id.passwordText);
+        final EditText emailText = (EditText) findViewById(R.id.emailText);
+        final EditText passwordText = (EditText) findViewById(R.id.passwordText);
         final Button login = findViewById(R.id.login);
         final TextView sign_up = findViewById(R.id.sign_up);
         final TextView txt_find = findViewById(R.id.txt_find);
@@ -63,10 +63,11 @@ public class LoginActivity extends AppCompatActivity {
                                 String email = jsonResponse.getString("email");
                                 String password = jsonResponse.getString("password");
                                 // 로그인 성공 시 메인화면 이동
-                                Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
+                                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                                 intent.putExtra("email", email);
                                 intent.putExtra("password", password);
                                 LoginActivity.this.startActivity(intent);
+                                finish();
                             } else {
                                 AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
                                 builder.setMessage("LogIn Failed!");

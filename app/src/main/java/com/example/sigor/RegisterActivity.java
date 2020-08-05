@@ -18,15 +18,20 @@ import org.json.JSONObject;
 
 public class RegisterActivity extends AppCompatActivity {
 
+    private String email;
+    private String password;
+    private String nickname;
+    private String username;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
-        final EditText usernameText = findViewById(R.id.usernameText);
-        final EditText emailText = findViewById(R.id.emailText);
-        final EditText passwordText = findViewById(R.id.passwordText);
-        final EditText password2Text = findViewById(R.id.password2Text);
+        final EditText usernameText = (EditText) findViewById(R.id.usernameText);
+        final EditText emailText = (EditText) findViewById(R.id.emailText);
+        final EditText passwordText = (EditText) findViewById(R.id.passwordText);
+        final EditText password2Text = (EditText) findViewById(R.id.password2Text);
         TextView register = findViewById(R.id.register);
         TextView txt_login = findViewById(R.id.txt_login);
 
@@ -80,6 +85,7 @@ public class RegisterActivity extends AppCompatActivity {
                                 builder.show();
                                 Intent intent = new Intent(RegisterActivity.this, chProfileActivity.class);
                                 RegisterActivity.this.startActivity(intent);
+                                finish();
                             } else {
                                 AlertDialog.Builder builder = new AlertDialog.Builder(RegisterActivity.this);
                                 builder.setMessage("Sign up Failed!");
@@ -87,7 +93,7 @@ public class RegisterActivity extends AppCompatActivity {
                                 builder.create();
                                 builder.show();
                             }
-                        } catch (JSONException e) {
+                        } catch (Exception e) {
                             e.printStackTrace();
                         }
                     }
