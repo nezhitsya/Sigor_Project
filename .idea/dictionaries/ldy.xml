@@ -2,6 +2,9 @@
   <dictionary name="ldy">
     <words>
       <w>imageurl</w>
+      <w>postid</w>
+      <w>postimage</w>
+      <w>profileid</w>
       <w>sigor</w>
     </words>
   </dictionary>

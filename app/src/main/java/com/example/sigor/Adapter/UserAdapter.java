@@ -9,7 +9,6 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -46,7 +45,6 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
 
         viewHolder.btn_follow.setVisibility(View.VISIBLE);
         viewHolder.username.setText(user.getUsername());
-        viewHolder.nickname.setText(user.getNickname());
         Glide.with(mContext).load(user.getImageurl()).into(viewHolder.image_profile);
         // isFollowing(user.getUsername(), viewHolder.btn_follow);
 
@@ -87,7 +85,6 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
     public class ViewHolder extends RecyclerView.ViewHolder {
 
         public TextView username;
-        public TextView nickname;
         public CircleImageView image_profile;
         public Button btn_follow;
 
@@ -95,28 +92,12 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
             super(itemView);
 
             username = itemView.findViewById(R.id.username);
-            nickname = itemView.findViewById(R.id.nickname);
             image_profile = itemView.findViewById(R.id.image_profile);
             btn_follow = itemView.findViewById(R.id.btn_follow);
         }
     }
 
-//    private void isFollowing(final String username, Button button) {
-//        // 데이터베이스에서 유저 명 가져오기
-//        String reference = "dd";
-//        reference.addValueEventListener(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(DataSnapshot dataSnapshot) {
-//                if(dataSanpchow.child(username).exists()) {
-//                    button.setText("following");
-//                } else {
-//                    button.setText("follow");
-//                }
-//            }
-//            @Override
-//            public void onCancelled(DatabaseError databaseError) {
-//
-//            }
-//        });
-//    }
+    private void isFollowing(final String username, Button button) {
+        // 데이터베이스에서 유저 명 가져오기
+    }
 }

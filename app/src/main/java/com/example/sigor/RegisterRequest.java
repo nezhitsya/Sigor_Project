@@ -17,8 +17,6 @@ public class RegisterRequest extends StringRequest {
         parameters.put("email", email);
         parameters.put("password", password);
         parameters.put("username", username);
-        parameters.put("nickname", password);
-        // parameters.put("userPic", userPic);
     }
 
     @Override
