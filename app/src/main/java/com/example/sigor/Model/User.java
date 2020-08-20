@@ -3,13 +3,13 @@ package com.example.sigor.Model;
 public class User {
 
     private String username;
-    private String nickname;
+    private String id;
     private String imageurl;
     private String bio;
 
-    public User(String email, String nickname, String imageurl, String bio) {
-        this.username = email;
-        this.nickname = nickname;
+    public User(String username, String id, String imageurl, String bio) {
+        this.username = username;
+        this.id = id;
         this.imageurl = imageurl;
         this.bio = bio;
     }
@@ -22,16 +22,16 @@ public class User {
         return username;
     }
 
-    public void setUsername(String email) {
+    public void setUsername(String username) {
         this.username = username;
     }
 
-    public String getNickname() {
-        return nickname;
+    public String getId() {
+        return id;
     }
 
-    public void setNickname(String nickname) {
-        this.nickname = nickname;
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getImageurl() {

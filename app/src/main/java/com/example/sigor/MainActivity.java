@@ -8,17 +8,12 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.view.View;
 
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.toolbox.Volley;
 import com.example.sigor.Fragment.HomeFragment;
 import com.example.sigor.Fragment.ProfileFragment;
 import com.example.sigor.Fragment.SearchFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-
-import org.json.JSONObject;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -32,8 +27,18 @@ public class MainActivity extends AppCompatActivity {
 
         bottomNavigationView = findViewById(R.id.bottom_navigation);
         bottomNavigationView.setOnNavigationItemReselectedListener(navigationItemSelectedListener);
+        Bundle intent = getIntent().getExtras();
 
-        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new HomeFragment()).commit();
+        if(intent != null) {
+            String publisher = intent.getString("publisherid");
+            SharedPreferences.Editor editor = getSharedPreferences("PREFS", MODE_PRIVATE).edit();
+            editor.putString("profileid", publisher);
+            editor.apply();
+
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new ProfileFragment()).commit();
+        } else {
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new HomeFragment()).commit();
+        }
     }
 
     private BottomNavigationView.OnNavigationItemReselectedListener navigationItemSelectedListener =
@@ -53,31 +58,10 @@ public class MainActivity extends AppCompatActivity {
                             selectedFragment = new SearchFragment();
                             break;
                         case R.id.nav_profile:
+                            SharedPreferences.Editor editor = getSharedPreferences("PREFS", MODE_PRIVATE).edit();
+                            editor.putString("profileid", FirebaseAuth.getInstance().getCurrentUser().getUid());
+                            editor.apply();
                             selectedFragment = new ProfileFragment();
-                            Intent intent = getIntent();
-                            String email = intent.getStringExtra("email");
-                            Response.Listener<String> responseListener = new Response.Listener<String>() {
-                                @Override
-                                public void onResponse(String response) {
-                                    try {
-                                        JSONObject jsonResponse = new JSONObject(response);
-                                        boolean success = jsonResponse.getBoolean("success");
-                                        if (success) {
-                                            String username = jsonResponse.getString("username");
-                                            SharedPreferences.Editor editor = getSharedPreferences("PREFS", MODE_PRIVATE).edit();
-                                            editor.putString("profileid", username);
-                                            editor.apply();
-                                            selectedFragment = new ProfileFragment();
-                                        }
-                                    } catch (Exception e) {
-                                        e.printStackTrace();
-                                    }
-                                }
-                            };
-
-                            UserRequest userRequest = new UserRequest(email, responseListener);
-                            RequestQueue queue = Volley.newRequestQueue(MainActivity.this);
-                            queue.add(userRequest);
                             break;
                     }
 

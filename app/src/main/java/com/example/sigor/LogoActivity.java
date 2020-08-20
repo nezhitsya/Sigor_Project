@@ -3,11 +3,29 @@ package com.example.sigor;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.media.tv.TvContract;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
 public class LogoActivity extends AppCompatActivity {
+
+    FirebaseUser firebaseUser;
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+
+        if (firebaseUser != null) {
+
+            startActivity(new Intent(LogoActivity.this, MainActivity.class));
+            finish();
+        }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

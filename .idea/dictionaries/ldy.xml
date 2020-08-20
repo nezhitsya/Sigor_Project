@@ -1,11 +1,16 @@
 <component name="ProjectDictionaryState">
   <dictionary name="ldy">
     <words>
+      <w>addcomment</w>
+      <w>filereference</w>
+      <w>fotos</w>
       <w>imageurl</w>
       <w>postid</w>
       <w>postimage</w>
       <w>profileid</w>
+      <w>publisherid</w>
       <w>sigor</w>
+      <w>userid</w>
     </words>
   </dictionary>
 </component>
