@@ -1,31 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center"
-    android:orientation="vertical"
     android:padding="10dp"
     tools:context=".LoginActivity">
 
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="174dp"
+        android:layout_height="135dp"
+        android:src="@drawable/logo_bk"
+        android:layout_marginTop="50dp"
+        android:layout_centerHorizontal="true" />
+
     <Button
         android:id="@+id/login"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="9dp"
         android:layout_marginEnd="9dp"
-        android:layout_marginBottom="256dp"
+        android:layout_marginTop="10dp"
         android:background="@color/colorPrimary"
         android:text="Log In"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:ignore="MissingConstraints" />
+        android:layout_below="@+id/passwordText" />
 
     <EditText
         android:id="@+id/emailText"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="9dp"
         android:layout_marginEnd="9dp"
@@ -35,16 +37,11 @@
         android:hint="E-mail"
         android:inputType="textEmailAddress"
         android:padding="10dp"
-        app:layout_constraintBottom_toTopOf="@+id/passwordText"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.65"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView2"
-        tools:ignore="MissingConstraints" />
+        android:layout_above="@+id/passwordText"/>
 
     <EditText
         android:id="@+id/passwordText"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="9dp"
         android:layout_marginEnd="9dp"
@@ -54,48 +51,23 @@
         android:hint="Password"
         android:inputType="textPassword"
         android:padding="10dp"
-        app:layout_constraintBottom_toTopOf="@+id/txt_find"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.65"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/emailText"
-        tools:ignore="MissingConstraints" />
+        android:layout_centerVertical="true"/>
 
     <TextView
         android:id="@+id/txt_find"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="10dp"
         android:text="Forget your Password?"
-        app:layout_constraintBottom_toTopOf="@+id/login"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/passwordText"
-        tools:ignore="MissingConstraints" />
+        android:layout_above="@+id/login"
+        android:layout_alignRight="@+id/login"/>
 
     <TextView
         android:id="@+id/sign_up"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="144dp"
-        android:layout_marginEnd="104dp"
+        android:layout_marginTop="10dp"
         android:text="Don't have an account? Sign up"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/login"
-        tools:ignore="MissingConstraints" />
+        android:layout_below="@id/login"
+        android:layout_alignRight="@+id/login"/>
 
-    <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="174dp"
-        android:layout_height="135dp"
-        android:layout_marginStart="99dp"
-        android:layout_marginTop="51dp"
-        android:layout_marginEnd="98dp"
-        android:layout_marginBottom="72dp"
-        app:layout_constraintBottom_toTopOf="@+id/emailText"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/emailText"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/logo_bk" />
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</RelativeLayout>
