@@ -83,7 +83,8 @@
         android:layout_marginStart="180dp"
         android:layout_marginTop="50dp"
         android:text="Already have an account? LogIn"
-        android:layout_below="@+id/username"/>
+        android:layout_below="@+id/username"
+        android:layout_alignParentRight="true"/>
 
     <TextView
         android:id="@+id/textView"

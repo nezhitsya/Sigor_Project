@@ -16,7 +16,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".CommentsActivity"></activity>
+        <activity android:name=".OptionsActivity"></activity>
+        <activity android:name=".FollowersActivity" />
+        <activity android:name=".CommentsActivity" />
         <activity android:name=".LoginActivity" />
         <activity android:name=".FindActivity" />
         <activity android:name=".chProfileActivity" />

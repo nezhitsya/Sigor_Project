@@ -25,11 +25,13 @@ import com.android.volley.Response;
 import com.android.volley.toolbox.Volley;
 import com.bumptech.glide.Glide;
 import com.example.sigor.Adapter.MyFotoAdapter;
+import com.example.sigor.FollowersActivity;
 import com.example.sigor.LoginActivity;
 // import com.example.sigor.LoginRequest;
 import com.example.sigor.MainActivity;
 import com.example.sigor.Model.Post;
 import com.example.sigor.Model.User;
+import com.example.sigor.OptionsActivity;
 import com.example.sigor.R;
 import com.example.sigor.chProfileActivity;
 import com.google.firebase.auth.FirebaseAuth;
@@ -138,6 +140,14 @@ public class ProfileFragment extends Fragment {
             }
         });
 
+        options.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), OptionsActivity.class);
+                startActivity(intent);
+            }
+        });
+
         my_fotos.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -153,6 +163,27 @@ public class ProfileFragment extends Fragment {
                 recyclerView_saves.setVisibility(View.VISIBLE);
             }
         });
+
+        followers.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), FollowersActivity.class);
+                intent.putExtra("id", profileid);
+                intent.putExtra("title", "followers");
+                startActivity(intent);
+            }
+        });
+
+        following.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), FollowersActivity.class);
+                intent.putExtra("id", profileid);
+                intent.putExtra("title", "following");
+                startActivity(intent);
+            }
+        });
+
         return view;
     }
 

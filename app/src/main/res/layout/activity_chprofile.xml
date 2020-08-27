@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".chProfileActivity">
 
     <TextView
@@ -17,14 +18,14 @@
 
     <com.rengwuxian.materialedittext.MaterialEditText
         android:id="@+id/bio"
-        android:layout_width="wrap_content"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="208dp"
-        android:ems="10"
         android:hint="Bio"
-        android:inputType="textPersonName"
+        android:padding="10dp"
         android:layout_below="@+id/textView6"
-        android:layout_centerHorizontal="true"/>
+        android:layout_centerHorizontal="true"
+        app:met_floatingLabel="normal"/>
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/image_profile"
@@ -32,7 +33,7 @@
         android:layout_height="200dp"
         android:src="@drawable/icon"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="180dp"/>
+        android:layout_marginTop="180dp" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -55,7 +56,7 @@
         android:layout_alignParentRight="true"/>
 
     <TextView
-        android:id="@+id/textView8"
+        android:id="@+id/back"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="25dp"
