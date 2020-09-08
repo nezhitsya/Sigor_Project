@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
@@ -47,7 +48,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 app:layout_constraintDimensionRatio="1:1"
-                android:id="@+id/post_image"/>
+                android:id="@+id/post_image"
+                tools:ignore="MissingConstraints" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -100,7 +102,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:textStyle="bold"
-            android:id="@+id/decription"
+            android:id="@+id/description"
             android:textColor="@color/black"/>
 
         <TextView

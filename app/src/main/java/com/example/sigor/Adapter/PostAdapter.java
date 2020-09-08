@@ -39,8 +39,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import org.w3c.dom.Comment;
-
 import java.util.HashMap;
 import java.util.List;
 
@@ -69,7 +67,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         final Post post = mPost.get(i);
 
-        Glide.with(mContext).load(post.getPostid()).apply(new RequestOptions().placeholder(R.drawable.placeholder)).into(viewHolder.post_image);
+        Glide.with(mContext).load(post.getPostimage()).apply(new RequestOptions().placeholder(R.drawable.placeholder)).into(viewHolder.post_image);
 
         if(post.getDescription().equals("")) {
             viewHolder.description.setVisibility(View.GONE);
@@ -174,7 +172,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
             public void onClick(View v) {
                 Intent intent = new Intent(mContext, FollowersActivity.class);
                 intent.putExtra("id", post.getPostid());
-                intent.putExtra("title", "following");
+                intent.putExtra("title", "likes");
                 mContext.startActivity(intent);
             }
         });

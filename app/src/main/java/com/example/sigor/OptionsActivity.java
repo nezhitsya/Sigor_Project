@@ -12,7 +12,7 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class OptionsActivity extends AppCompatActivity {
 
-    TextView logout, settings;
+    TextView logout, settings, chatting;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

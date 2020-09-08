@@ -2,19 +2,15 @@ package com.example.sigor.Fragment;
 
 import android.os.Bundle;
 
-import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.service.autofill.Dataset;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 
-// import com.example.sigor.Adapter.PostAdapter;
 import com.example.sigor.Adapter.PostAdapter;
 import com.example.sigor.Model.Post;
 import com.example.sigor.R;
@@ -25,7 +21,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -77,7 +72,7 @@ public class HomeFragment extends Fragment {
             }
 
             @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
+            public void onCancelled(DatabaseError databaseError) {
 
             }
         });
@@ -104,7 +99,7 @@ public class HomeFragment extends Fragment {
             }
 
             @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
+            public void onCancelled(DatabaseError databaseError) {
 
             }
         });

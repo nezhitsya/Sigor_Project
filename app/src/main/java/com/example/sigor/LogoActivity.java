@@ -18,19 +18,19 @@ public class LogoActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
-
-        if (firebaseUser != null) {
-
-            startActivity(new Intent(LogoActivity.this, MainActivity.class));
-            finish();
-        }
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_logo);
+
+        firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+
+        if (firebaseUser != null) {
+            startActivity(new Intent(LogoActivity.this, MainActivity.class));
+            finish();
+        }
 
         Handler handler = new Handler() {
             public void handleMessage (Message msg) {

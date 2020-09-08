@@ -2,15 +2,23 @@ package com.example.sigor;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+
 public class FindActivity extends AppCompatActivity {
 
-    EditText email, username, nickname;
+    EditText email, username;
     TextView confirm, back;
+
+    FirebaseAuth auth;
+    DatabaseReference reference;
+    ProgressDialog pd;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,7 +27,6 @@ public class FindActivity extends AppCompatActivity {
 
         email = findViewById(R.id.emailText);
         username = findViewById(R.id.usernameText);
-        nickname = findViewById(R.id.nickname);
         confirm = findViewById(R.id.confirm);
         back = findViewById(R.id.back);
 
@@ -28,6 +35,13 @@ public class FindActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 onBackPressed();
+            }
+        });
+
+        confirm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
             }
         });
     }

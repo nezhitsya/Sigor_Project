@@ -134,7 +134,7 @@ public class FollowersActivity extends AppCompatActivity {
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Users");
         reference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+            public void onDataChange(DataSnapshot dataSnapshot) {
                 userList.clear();
                 for(DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     User user = snapshot.getValue(User.class);
@@ -144,10 +144,11 @@ public class FollowersActivity extends AppCompatActivity {
                         }
                     }
                 }
+                userAdapter.notifyDataSetChanged();
             }
 
             @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
+            public void onCancelled(DatabaseError databaseError) {
 
             }
         });
