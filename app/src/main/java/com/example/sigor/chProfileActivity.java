@@ -96,6 +96,9 @@ public class chProfileActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 updateProfile(bio.getText().toString());
+
+                Intent changeIntent = new Intent(chProfileActivity.this, FindActivity.class);
+                chProfileActivity.this.startActivity(changeIntent);
             }
         });
     }
@@ -157,7 +160,7 @@ public class chProfileActivity extends AppCompatActivity {
                 }
             });
         } else {
-            Toast.makeText(this, "No image selected", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "이미지를 선택해주세요.", Toast.LENGTH_SHORT).show();
         }
     }
 

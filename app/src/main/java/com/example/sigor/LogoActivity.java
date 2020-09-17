@@ -28,17 +28,26 @@ public class LogoActivity extends AppCompatActivity {
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
 
         if (firebaseUser != null) {
-            startActivity(new Intent(LogoActivity.this, MainActivity.class));
-            finish();
+            Handler handler = new Handler() {
+                public void handleMessage (Message msg) {
+                    super.handleMessage(msg);
+                    startActivity(new Intent(LogoActivity.this, MainActivity.class));
+                    finish();
+                }
+            };
+            handler.sendEmptyMessageDelayed(0, 3000);
+        } else {
+
+            Handler handler = new Handler() {
+                public void handleMessage (Message msg) {
+                    super.handleMessage(msg);
+                    startActivity(new Intent(LogoActivity.this, LoginActivity.class));
+                    finish();
+                }
+            };
+            handler.sendEmptyMessageDelayed(0, 3000);
+
         }
 
-        Handler handler = new Handler() {
-            public void handleMessage (Message msg) {
-                super.handleMessage(msg);
-                startActivity(new Intent(LogoActivity.this, LoginActivity.class));
-                finish();
-            }
-        };
-        handler.sendEmptyMessageDelayed(0, 3000);
     }
 }

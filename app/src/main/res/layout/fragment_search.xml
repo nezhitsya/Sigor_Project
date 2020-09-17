@@ -17,19 +17,35 @@
             android:background="?android:attr/windowBackground"
             android:id="@+id/toolbar">
 
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_search"/>
-
-            <EditText
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/search_bar"
-                android:background="@android:color/transparent"
-                android:hint="Search"
-                android:layout_marginStart="10dp"
-                android:layout_marginLeft="10dp"/>
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_margin="10dp"
+                    android:src="@drawable/ic_search" />
+
+                <EditText
+                    android:layout_width="330dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:layout_centerInParent="true"
+                    android:id="@+id/search_bar"
+                    android:background="@android:color/transparent"
+                    android:hint="Search"/>
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_photo"
+                    android:layout_alignParentRight="true"
+                    android:layout_margin="10dp"
+                    android:id="@+id/photo_search" />
+
+            </RelativeLayout>
 
         </androidx.appcompat.widget.Toolbar>
 

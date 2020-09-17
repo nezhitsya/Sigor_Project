@@ -110,6 +110,10 @@ public class PostActivity extends AppCompatActivity {
                         hashMap.put("postimage", myUrl);
                         hashMap.put("description", description.getText().toString());
                         hashMap.put("publisher", FirebaseAuth.getInstance().getCurrentUser().getUid());
+//                        hashMap.put("R", py_r);
+//                        hashMap.put("G", py_g);
+//                        hashMap.put("B", py_b);
+//                        hashMap.put("Ratio", py_ratio);
 
                         reference.child(postid).setValue(hashMap);
 
@@ -141,7 +145,7 @@ public class PostActivity extends AppCompatActivity {
             imageUri = result.getUri();
             image_added.setImageURI(imageUri);
         } else {
-            Toast.makeText(this, "Something gone wrong!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "다시 시도해주세요.", Toast.LENGTH_SHORT).show();
             startActivity(new Intent(PostActivity.this, MainActivity.class));
             finish();
         }
