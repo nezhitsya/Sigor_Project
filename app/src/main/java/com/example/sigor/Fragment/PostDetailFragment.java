@@ -1,6 +1,5 @@
 package com.example.sigor.Fragment;
 
-import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
@@ -25,6 +24,8 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
+import static android.content.Context.MODE_PRIVATE;
+
 public class PostDetailFragment extends Fragment {
 
     String postid;
@@ -38,7 +39,7 @@ public class PostDetailFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_post_detail, container, false);
 
-        SharedPreferences preferences = getContext().getSharedPreferences("PREFS", Context.MODE_PRIVATE);
+        SharedPreferences preferences = getContext().getSharedPreferences("PREFS", MODE_PRIVATE);
         postid = preferences.getString("postid", "none");
 
         recyclerView = view.findViewById(R.id.recycler_view);
@@ -60,7 +61,7 @@ public class PostDetailFragment extends Fragment {
 
         reference.addValueEventListener(new ValueEventListener() {
             @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+            public void onDataChange(DataSnapshot dataSnapshot) {
                 postList.clear();
                 Post post = dataSnapshot.getValue(Post.class);
                 postList.add(post);
@@ -69,7 +70,7 @@ public class PostDetailFragment extends Fragment {
             }
 
             @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
+            public void onCancelled(DatabaseError databaseError) {
 
             }
         });

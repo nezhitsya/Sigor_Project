@@ -59,14 +59,14 @@ public class ProfileFragment extends Fragment {
     ImageButton my_fotos, saved_fotos;
     String profileid;
 
-    RecyclerView recyclerView;
-    MyFotoAdapter myFotoAdapter;
-    List<Post> postList;
+    private RecyclerView recyclerView;
+    private MyFotoAdapter myFotoAdapter;
+    private List<Post> postList;
 
     private List<String> mySaves;
-    RecyclerView recyclerView_saves;
-    MyFotoAdapter myFotoAdapter_saves;
-    List<Post> postList_saves;
+    private RecyclerView recyclerView_saves;
+    private MyFotoAdapter myFotoAdapter_saves;
+    private List<Post> postList_saves;
 
     FirebaseUser firebaseUser;
 
@@ -132,10 +132,10 @@ public class ProfileFragment extends Fragment {
                     startActivity(new Intent(getContext(), chProfileActivity.class));
                 } else if(btn.equals("follow")) {
                     FirebaseDatabase.getInstance().getReference().child("Follow").child(firebaseUser.getUid()).child("following").child(profileid).setValue(true);
-                    FirebaseDatabase.getInstance().getReference().child("Follow").child(firebaseUser.getUid()).child("followers").child(firebaseUser.getUid()).setValue(true);
+                    FirebaseDatabase.getInstance().getReference().child("Follow").child(profileid).child("followers").child(firebaseUser.getUid()).setValue(true);
                 } else if(btn.equals("following")) {
                     FirebaseDatabase.getInstance().getReference().child("Follow").child(firebaseUser.getUid()).child("following").child(profileid).removeValue();
-                    FirebaseDatabase.getInstance().getReference().child("Follow").child(firebaseUser.getUid()).child("followers").child(firebaseUser.getUid()).removeValue();
+                    FirebaseDatabase.getInstance().getReference().child("Follow").child(profileid).child("followers").child(firebaseUser.getUid()).removeValue();
                 }
             }
         });
@@ -258,6 +258,7 @@ public class ProfileFragment extends Fragment {
         });
     }
 
+    // get Post number
     private void getNrPosts() {
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Posts");
 

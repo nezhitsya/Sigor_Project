@@ -16,6 +16,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.bumptech.glide.Glide;
+import com.example.sigor.Fragment.ProfileFragment;
 import com.example.sigor.Model.User;
 import com.google.android.gms.auth.api.signin.internal.Storage;
 import com.google.android.gms.tasks.Continuation;
@@ -97,7 +98,7 @@ public class chProfileActivity extends AppCompatActivity {
             public void onClick(View v) {
                 updateProfile(bio.getText().toString());
 
-                Intent changeIntent = new Intent(chProfileActivity.this, FindActivity.class);
+                Intent changeIntent = new Intent(chProfileActivity.this, ProfileFragment.class);
                 chProfileActivity.this.startActivity(changeIntent);
             }
         });
