@@ -27,7 +27,7 @@ public class LogoActivity extends AppCompatActivity {
 
     FirebaseUser firebaseUser;
 
-    // TCP_Client tc;
+//    TCP_Client tc;
 
     @Override
     protected void onStart() {
@@ -39,9 +39,9 @@ public class LogoActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_logo);
 
-        // TCP
-        // tc = new TCP_Client();
-        // tc.execute(this);
+         // TCP
+//         tc = new TCP_Client();
+//         tc.execute(this);
 
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
 
@@ -70,8 +70,8 @@ public class LogoActivity extends AppCompatActivity {
     }
 
 //    public static class TCP_Client extends AsyncTask {
-//        protected static String SERVER_IP = "34.64.219.152";
-//        protected static int PORT = 80;
+//        protected static String SERVER_IP = "192.168.200.152";
+//        protected static int PORT = 5786;
 //
 //        protected Object doInBackground(Object... params) {
 //            try {

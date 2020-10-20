@@ -98,7 +98,7 @@ public class chProfileActivity extends AppCompatActivity {
             public void onClick(View v) {
                 updateProfile(bio.getText().toString());
 
-                Intent changeIntent = new Intent(chProfileActivity.this, ProfileFragment.class);
+                Intent changeIntent = new Intent(chProfileActivity.this, MainActivity.class);
                 chProfileActivity.this.startActivity(changeIntent);
             }
         });
