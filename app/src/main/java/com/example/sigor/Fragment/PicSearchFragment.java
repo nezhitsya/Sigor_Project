@@ -3,6 +3,7 @@ package com.example.sigor.Fragment;
 import android.content.ContentResolver;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 
@@ -45,7 +46,11 @@ import com.theartofdev.edmodo.cropper.CropImage;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.net.InetSocketAddress;
+import java.net.ServerSocket;
 import java.net.Socket;
+import java.net.SocketAddress;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 
@@ -118,9 +123,9 @@ public class PicSearchFragment extends Fragment {
             searchUri = result.getUri();
             uploadImage();
             image_search.setImageURI(searchUri);
-            final String search_img = searchUri.toString();
 
-            connect();
+            ClientThread thread = new ClientThread();
+            thread.start();
 
 //            Response.Listener<String> responseListener = new Response.Listener<String>() {
 //                @Override
@@ -151,7 +156,7 @@ public class PicSearchFragment extends Fragment {
 
     private void uploadImage() {
         if(searchUri != null) {
-            final StorageReference filereference = storageReference.child(System.currentTimeMillis()+"."+getFileExtension(searchUri));
+            final StorageReference filereference = storageReference.child("search_pic");
             uploadTask = filereference.putFile(searchUri);
             uploadTask.continueWithTask(new Continuation() {
                 @Override
@@ -214,49 +219,40 @@ public class PicSearchFragment extends Fragment {
 //        });
 //    }
 
-    void connect() {
-        Log.d("TCP", "server connecting");
-        mHandler = new Handler();
+    class ClientThread extends Thread {
+        @Override
+        public void run() {
+            try {
+                socket = new Socket("192.168.200.197", 5786);
+                Log.d("TCP", "Success");
+            } catch (Exception e) {
+                Log.d("TCP", "Fail");
+                e.printStackTrace();
+            }
+            try {
+                dis = new DataInputStream(socket.getInputStream());
+            } catch (Exception e) {
+                Log.d("TCP", "Buffer Error");
+                e.printStackTrace();
+            }
+            Log.d("TCP", "Buffer Success");
 
-        Thread checkUpdate = new Thread() {
-            @RequiresApi(api = Build.VERSION_CODES.KITKAT)
-            public void run() {
+            while (true) {
                 try {
-                    socket = new Socket("192.168.200.197", 5786);
-                    Log.d("TCP", "Success");
-                } catch (IOException e) {
-                    Log.d("TCP", "Fail");
-                    e.printStackTrace();
-                }
-                try {
-                    dos = new DataOutputStream(socket.getOutputStream());
-                    dis = new DataInputStream(socket.getInputStream());
-                    // dos.writeUTF("안드로이드에서 서버로 연결 요청");
-                } catch (IOException e) {
-                    Log.d("TCP", "Buffer Error");
-                    e.printStackTrace();
-                }
-                Log.d("TCP", "Buffer Success");
-
-                while(true) {
-                    try {
-                        while(dis.available() > 0 && (piclist = dis.readUTF()) != null) {
-                            int length = dis.readInt();
-                            byte [] encoded = new byte[length];
-                            dis.readFully(encoded);
-                            piclist = new String(encoded, StandardCharsets.UTF_8);
-                            Log.d("TCP", ""+piclist);
-                        }
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                        Log.d("TCP", "Finish");
-                        storageReference.child("search").delete();
+                    while (dis.available() > 0) {
+                        piclist = dis.readUTF();
+                        upload();
+                        Log.d("TCP", "" + piclist);
                     }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    Log.d("TCP", "Finish");
                 }
             }
-        };
-        checkUpdate.start();
+        }
+    }
 
+    public void upload() {
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Posts");
         reference.addValueEventListener(new ValueEventListener() {
             @Override
@@ -272,6 +268,8 @@ public class PicSearchFragment extends Fragment {
                         spic = spic.replaceAll(" ", "");
                         spic = spic.replaceAll("\\[", "");
                         spic = spic.replaceAll("]", "");
+                        spic = spic.replaceAll(",", "");
+                        spic = spic.replaceAll("\"", "");
                         spic = spic.replaceAll(System.getProperty("line.separator"), "");
                         if(post.getPostimage().equals(spic)) {
                             finalList.add(post);

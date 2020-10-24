@@ -3,4 +3,13 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="information">Information</string>
+    <string name="social">Social</string>
+    <string name="search">Search</string>
+    <string name="last">지금 바로 시작하세요.</string>
+
+    <string name="info">다양한 유기견 보호소에 대한 정보와 보호되고 있는 유기견들의 정보를 보여줍니다.</string>
+    <string name="soc">온라인 사진 공유 및 소셜 네트워크 서비스를 제공해 줍니다.</string>
+    <string name="sea">어플이 제공하는 사진 검색 엔진을 이용해 잃어버린 반려견과 비슷하게 생긴 강아지의 사진을 제안해줍니다.</string>
+    <string name="fin"></string>
 </resources>

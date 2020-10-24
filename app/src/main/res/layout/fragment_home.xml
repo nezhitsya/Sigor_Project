@@ -34,7 +34,8 @@
                     android:src="@drawable/ic_inbox"
                     android:layout_centerVertical="true"
                     android:layout_marginRight="10dp"
-                    android:layout_alignParentEnd="true"/>
+                    android:layout_alignParentEnd="true"
+                    android:id="@+id/chat"/>
             </RelativeLayout>
         </androidx.appcompat.widget.Toolbar>
     </com.google.android.material.appbar.AppBarLayout>

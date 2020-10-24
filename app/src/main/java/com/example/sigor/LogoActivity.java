@@ -59,7 +59,8 @@ public class LogoActivity extends AppCompatActivity {
             Handler handler = new Handler() {
                 public void handleMessage (Message msg) {
                     super.handleMessage(msg);
-                    startActivity(new Intent(LogoActivity.this, LoginActivity.class));
+                    // startActivity(new Intent(LogoActivity.this, LoginActivity.class));
+                    startActivity(new Intent(LogoActivity.this, OnBoardingActivity.class));
                     finish();
                 }
             };

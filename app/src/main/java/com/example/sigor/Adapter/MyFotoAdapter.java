@@ -9,14 +9,12 @@ import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.FragmentActivity;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.sigor.Fragment.PostDetailFragment;
 import com.example.sigor.Model.Post;
 import com.example.sigor.R;
-import com.example.sigor.Retrofit.IOnBackPressed;
 
 import java.util.List;
 
@@ -51,7 +49,7 @@ public class MyFotoAdapter extends RecyclerView.Adapter<MyFotoAdapter.ImageViewH
                 editor.putString("postid", post.getPostid());
                 editor.apply();
 
-                ((FragmentActivity)mContext).getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new PostDetailFragment()).commit();
+                ((FragmentActivity)mContext).getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new PostDetailFragment()).addToBackStack(null).commit();
             }
         });
     }

@@ -14,7 +14,6 @@ import android.view.ViewGroup;
 import com.example.sigor.Adapter.PostAdapter;
 import com.example.sigor.Model.Post;
 import com.example.sigor.R;
-import com.example.sigor.Retrofit.IOnBackPressed;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
