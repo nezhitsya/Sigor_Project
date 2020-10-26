@@ -43,7 +43,7 @@
         </androidx.appcompat.widget.Toolbar>
     </com.google.android.material.appbar.AppBarLayout>
 
-    <ScrollView
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/bar">
@@ -56,13 +56,14 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
+                android:orientation="vertical"
                 android:id="@+id/top_bar"
                 android:padding="16dp">
 
                 <de.hdodenhof.circleimageview.CircleImageView
-                    android:layout_width="80dp"
-                    android:layout_height="80dp"
+                    android:layout_width="250dp"
+                    android:layout_height="250dp"
+                    android:layout_gravity="center"
                     android:id="@+id/image_profile"/>
 
                 <LinearLayout
@@ -70,7 +71,9 @@
                     android:layout_height="80dp"
                     android:paddingLeft="20dp"
                     android:paddingRight="4dp"
-                    android:orientation="vertical">
+                    android:paddingTop="10dp"
+                    android:orientation="vertical"
+                    android:layout_gravity="bottom">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -151,6 +154,7 @@
                         android:id="@+id/edit_profile"
                         android:background="@drawable/button_black"/>
                 </LinearLayout>
+
             </LinearLayout>
 
             <LinearLayout
@@ -210,6 +214,5 @@
                 android:id="@+id/recycler_view_save"/>
 
         </LinearLayout>
-    </ScrollView>
-
+    </androidx.core.widget.NestedScrollView>
 </RelativeLayout>

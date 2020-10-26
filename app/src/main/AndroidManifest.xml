@@ -27,7 +27,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".OnBoardingActivity"></activity>
+        <activity android:name=".StoryActivity"></activity>
+        <activity android:name=".AddStoryActivity" />
+        <activity android:name=".OnBoardingActivity" />
         <activity android:name=".MessageActivity" />
         <activity android:name=".ChatMainActivity" />
         <activity android:name=".WithdrawalActivity" />

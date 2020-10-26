@@ -27,8 +27,6 @@ public class LogoActivity extends AppCompatActivity {
 
     FirebaseUser firebaseUser;
 
-//    TCP_Client tc;
-
     @Override
     protected void onStart() {
         super.onStart();
@@ -38,10 +36,6 @@ public class LogoActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_logo);
-
-         // TCP
-//         tc = new TCP_Client();
-//         tc.execute(this);
 
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
 
@@ -69,50 +63,4 @@ public class LogoActivity extends AppCompatActivity {
         }
 
     }
-
-//    public static class TCP_Client extends AsyncTask {
-//        protected static String SERVER_IP = "192.168.200.152";
-//        protected static int PORT = 5786;
-//
-//        protected Object doInBackground(Object... params) {
-//            try {
-//                Log.d("TCP", "Server Connecting");
-//                InetAddress serverAddress = InetAddress.getByName(SERVER_IP);
-//                Socket socket = new Socket(serverAddress, PORT);
-//
-//                try {
-//                    System.out.println("Searching data");
-//                    File file = new File(Environment.getExternalStorageDirectory().getPath() + "/");
-//                    DataInputStream dis = new DataInputStream(new FileInputStream(file));
-//                    DataOutputStream dos = new DataOutputStream(socket.getOutputStream());
-//
-//                    long fileSize = file.length();
-//                    byte[] buf = new byte[1024];
-//
-//                    long totalReadBytes = 0;
-//                    int readBytes;
-//                    System.out.println("End Searching");
-//
-//                    while ((readBytes = dis.read(buf)) > 0) {
-//                        System.out.println("while");
-//                        dos.write(buf, 0, readBytes);
-//                        totalReadBytes += readBytes;
-//                    }
-//                    System.out.println("Sending Data");
-//                    dos.close();
-//                    System.out.println("End Sending");
-//                } catch (Exception e) {
-//                    Log.d("TCP", "don't send message");
-//                    e.printStackTrace();
-//                }
-//            } catch (UnknownHostException e) {
-//                Log.d("TCP", "Cannot connect");
-//                e.printStackTrace();
-//            } catch (IOException e) {
-//                Log.d("TCP", "Fail");
-//                e.printStackTrace();
-//            }
-//            return null;
-//        }
-//    }
 }

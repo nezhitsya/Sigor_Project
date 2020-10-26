@@ -223,6 +223,7 @@ public class PicSearchFragment extends Fragment {
         @Override
         public void run() {
             try {
+                // 10.0.2.2
                 socket = new Socket("192.168.200.197", 5786);
                 Log.d("TCP", "Success");
             } catch (Exception e) {

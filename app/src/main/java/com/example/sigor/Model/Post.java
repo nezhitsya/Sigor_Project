@@ -5,20 +5,12 @@ public class Post {
     private String postimage;
     private String description;
     private String publisher;
-//    private int R;
-//    private int G;
-//    private int B;
-//    private int Ratio;
 
     public Post(String postid, String postimage, String description, String publisher) {
         this.postid = postid;
         this.postimage = postimage;
         this.description = description;
         this.publisher = publisher;
-//        this.R = R;
-//        this.G = G;
-//        this.B = B;
-//        this.Ratio = Ratio;
     }
 
     public Post() {
