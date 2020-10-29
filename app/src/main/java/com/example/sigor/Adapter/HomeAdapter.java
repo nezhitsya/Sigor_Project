@@ -112,7 +112,7 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ImageViewHolde
             post_image = itemView.findViewById(R.id.post_image);
             username = itemView.findViewById(R.id.username);
 
-            // post_image.setColorFilter(Color.parseColor("#f1f1f1"), PorterDuff.Mode.MULTIPLY);
+             post_image.setColorFilter(Color.parseColor("#f1f1f1"), PorterDuff.Mode.MULTIPLY);
         }
     }
 

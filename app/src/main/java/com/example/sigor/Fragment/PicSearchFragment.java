@@ -25,9 +25,13 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.toolbox.Volley;
 import com.example.sigor.Adapter.MyFotoAdapter;
 import com.example.sigor.MainActivity;
 import com.example.sigor.Model.Post;
+import com.example.sigor.PythonRequest;
 import com.example.sigor.R;
 import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -42,6 +46,8 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.StorageTask;
 import com.theartofdev.edmodo.cropper.CropImage;
+
+import org.json.JSONObject;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
@@ -123,26 +129,29 @@ public class PicSearchFragment extends Fragment {
             searchUri = result.getUri();
             uploadImage();
             image_search.setImageURI(searchUri);
+            final String search_img =  searchUri.toString();
 
-            ClientThread thread = new ClientThread();
-            thread.start();
+            // socket
+//            ClientThread thread = new ClientThread();
+//            thread.start();
 
-//            Response.Listener<String> responseListener = new Response.Listener<String>() {
-//                @Override
-//                public void onResponse(String response) {
-//                    try {
-//                        JSONObject jsonResponse = new JSONObject(response);
-//                        String out_img = jsonResponse.getString("out_img");
-//                        searchList = out_img.split(", ");
-//                        myFotos(searchList);
-//                    } catch (Exception e) {
-//                        e.printStackTrace();
-//                    }
-//                }
-//            };
-//            PythonRequest pythonRequest = new PythonRequest(search_img, responseListener);
-//            RequestQueue queue = Volley.newRequestQueue(getContext());
-//            queue.add(pythonRequest);
+            // cafe24
+            Response.Listener<String> responseListener = new Response.Listener<String>() {
+                @Override
+                public void onResponse(String response) {
+                    try {
+                        JSONObject jsonResponse = new JSONObject(response);
+                        String out_img = jsonResponse.getString("out_img");
+                        searchList = out_img.split(", ");
+                        myFotos(searchList);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+            };
+            PythonRequest pythonRequest = new PythonRequest(search_img, responseListener);
+            RequestQueue queue = Volley.newRequestQueue(getContext());
+            queue.add(pythonRequest);
         } else {
             Toast.makeText(this.getContext(), "다시 시도해주세요.", Toast.LENGTH_SHORT).show();
         }
@@ -187,71 +196,73 @@ public class PicSearchFragment extends Fragment {
         }
     }
 
-//    private void myFotos(final String [] searchList) {
-//        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Posts");
-//        reference.addValueEventListener(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(DataSnapshot dataSnapshot) {
-//                finalList.clear();
-//
-//                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-//                    Post post = snapshot.getValue(Post.class);
-//
-//                    for(String spic : searchList) {
-//                        spic = spic.replaceAll("'", "");
-//                        spic = spic.replaceAll(" ", "");
-//                        spic = spic.replaceAll("\\[", "");
-//                        spic = spic.replaceAll("]", "");
-//                        spic = spic.replaceAll(System.getProperty("line.separator"), "");
-//                        if(post.getPostimage().equals(spic)) {
-//                            finalList.add(post);
-//                        }
-//                    }
-//                }
-//                myFotoAdapter.notifyDataSetChanged();
-//                progressBar.setVisibility(View.GONE);
-//            }
-//
-//            @Override
-//            public void onCancelled(DatabaseError databaseError) {
-//
-//            }
-//        });
-//    }
+    // cafe24
+    private void myFotos(final String [] searchList) {
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Posts");
+        reference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                finalList.clear();
 
-    class ClientThread extends Thread {
-        @Override
-        public void run() {
-            try {
-                // 10.0.2.2
-                socket = new Socket("192.168.200.197", 5786);
-                Log.d("TCP", "Success");
-            } catch (Exception e) {
-                Log.d("TCP", "Fail");
-                e.printStackTrace();
-            }
-            try {
-                dis = new DataInputStream(socket.getInputStream());
-            } catch (Exception e) {
-                Log.d("TCP", "Buffer Error");
-                e.printStackTrace();
-            }
-            Log.d("TCP", "Buffer Success");
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                    Post post = snapshot.getValue(Post.class);
 
-            while (true) {
-                try {
-                    while (dis.available() > 0) {
-                        piclist = dis.readUTF();
-                        upload();
-                        Log.d("TCP", "" + piclist);
+                    for(String spic : searchList) {
+                        spic = spic.replaceAll("'", "");
+                        spic = spic.replaceAll(" ", "");
+                        spic = spic.replaceAll("\\[", "");
+                        spic = spic.replaceAll("]", "");
+                        spic = spic.replaceAll(System.getProperty("line.separator"), "");
+                        if(post.getPostimage().equals(spic)) {
+                            finalList.add(post);
+                        }
                     }
-                } catch (Exception e) {
-                    e.printStackTrace();
-                    Log.d("TCP", "Finish");
                 }
+                myFotoAdapter.notifyDataSetChanged();
+                progressBar.setVisibility(View.GONE);
             }
-        }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
     }
+
+    // socket
+//    class ClientThread extends Thread {
+//        @Override
+//        public void run() {
+//            try {
+//                // 10.0.2.2
+//                socket = new Socket("192.168.200.197", 5786);
+//                Log.d("TCP", "Success");
+//            } catch (Exception e) {
+//                Log.d("TCP", "Fail");
+//                e.printStackTrace();
+//            }
+//            try {
+//                dis = new DataInputStream(socket.getInputStream());
+//            } catch (Exception e) {
+//                Log.d("TCP", "Buffer Error");
+//                e.printStackTrace();
+//            }
+//            Log.d("TCP", "Buffer Success");
+//
+//            while (true) {
+//                try {
+//                    while (dis.available() > 0) {
+//                        piclist = dis.readUTF();
+//                        upload();
+//                        Log.d("TCP", "" + piclist);
+//                    }
+//                } catch (Exception e) {
+//                    e.printStackTrace();
+//                    Log.d("TCP", "Finish");
+//                }
+//            }
+//        }
+//    }
 
     public void upload() {
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Posts");

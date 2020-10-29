@@ -1,5 +1,7 @@
 package com.example.sigor.Fragment;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -31,6 +33,7 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.Socket;
+import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -41,7 +44,7 @@ public class SearchFragment extends Fragment {
     private List<User> mUser;
 
     EditText search_bar;
-    ImageView photo_search;
+    ImageView photo_search, gov, paw, animal, sigor;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -60,7 +63,36 @@ public class SearchFragment extends Fragment {
         userAdapter = new UserAdapter(getContext(), mUser, true);
         recyclerView.setAdapter(userAdapter);
 
+        gov = view.findViewById(R.id.gov);
+        paw = view.findViewById(R.id.paw);
+        animal = view.findViewById(R.id.animal);
+        sigor = view.findViewById(R.id.sigor);
+
         readUsers();
+
+        gov.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.animal.go.kr/aec/index.do"));
+                startActivity(intent);
+            }
+        });
+
+        paw.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://pawinhand.kr/main/index.php"));
+                startActivity(intent);
+            }
+        });
+
+        animal.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.animal.go.kr/front/index.do"));
+                startActivity(intent);
+            }
+        });
 
         photo_search.setOnClickListener(new View.OnClickListener() {
             @Override
