@@ -27,7 +27,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".StoryActivity"></activity>
+        <activity android:name=".AddSearchActivity"></activity>
+        <activity android:name=".PicSearchActivity" />
+        <activity android:name=".StoryActivity" />
         <activity android:name=".AddStoryActivity" />
         <activity android:name=".OnBoardingActivity" />
         <activity android:name=".MessageActivity" />

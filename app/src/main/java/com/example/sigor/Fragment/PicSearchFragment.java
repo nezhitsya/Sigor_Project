@@ -28,6 +28,7 @@ import android.widget.Toast;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.toolbox.Volley;
+import com.bumptech.glide.Glide;
 import com.example.sigor.Adapter.MyFotoAdapter;
 import com.example.sigor.MainActivity;
 import com.example.sigor.Model.Post;
@@ -36,6 +37,7 @@ import com.example.sigor.R;
 import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -106,6 +108,20 @@ public class PicSearchFragment extends Fragment {
         progressBar = view.findViewById(R.id.progress_circular);
 
         storageReference = FirebaseStorage.getInstance().getReference("search");
+        storageReference.child("search_pic").getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+            @Override
+            public void onSuccess(Uri uri) {
+                //이미지 로드 성공시
+                Glide.with(getContext()).load(uri).into(image_search);
+
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception exception) {
+                //이미지 로드 실패시
+                Toast.makeText(getContext(), "실패", Toast.LENGTH_SHORT).show();
+            }
+        });
 
         close.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -115,7 +131,9 @@ public class PicSearchFragment extends Fragment {
             }
         });
 
-        CropImage.activity().setAspectRatio(1,1).start(getContext(), PicSearchFragment.this);
+        // cafe24
+        PythonThread thread = new PythonThread();
+        thread.start();
 
         return view;
     }
@@ -124,18 +142,15 @@ public class PicSearchFragment extends Fragment {
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if(requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE) {
-            CropImage.ActivityResult result = CropImage.getActivityResult(data);
-            searchUri = result.getUri();
-            uploadImage();
-            image_search.setImageURI(searchUri);
-            final String search_img =  searchUri.toString();
+        // socket
+//       ClientThread thread = new ClientThread();
+//       thread.start();
+    }
 
-            // socket
-//            ClientThread thread = new ClientThread();
-//            thread.start();
-
-            // cafe24
+    // cafe24
+    class PythonThread extends Thread {
+        @Override
+        public void run() {
             Response.Listener<String> responseListener = new Response.Listener<String>() {
                 @Override
                 public void onResponse(String response) {
@@ -146,53 +161,13 @@ public class PicSearchFragment extends Fragment {
                         myFotos(searchList);
                     } catch (Exception e) {
                         e.printStackTrace();
+                        Log.d("TCP", "fail");
                     }
                 }
             };
-            PythonRequest pythonRequest = new PythonRequest(search_img, responseListener);
+            PythonRequest pythonRequest = new PythonRequest(responseListener);
             RequestQueue queue = Volley.newRequestQueue(getContext());
             queue.add(pythonRequest);
-        } else {
-            Toast.makeText(this.getContext(), "다시 시도해주세요.", Toast.LENGTH_SHORT).show();
-        }
-    }
-
-    private String getFileExtension(Uri uri) {
-        ContentResolver contentResolver = getActivity().getContentResolver();
-        MimeTypeMap mime = MimeTypeMap.getSingleton();
-        return mime.getExtensionFromMimeType(contentResolver.getType(uri));
-    }
-
-    private void uploadImage() {
-        if(searchUri != null) {
-            final StorageReference filereference = storageReference.child("search_pic");
-            uploadTask = filereference.putFile(searchUri);
-            uploadTask.continueWithTask(new Continuation() {
-                @Override
-                public Object then(@NonNull Task task) throws Exception {
-                    if(!task.isComplete()) {
-                        throw task.getException();
-                    }
-                    return filereference.getDownloadUrl();
-                }
-            }).addOnCompleteListener(new OnCompleteListener<Uri>() {
-                @Override
-                public void onComplete(@NonNull Task<Uri> task) {
-                    if(task.isSuccessful()) {
-                        Uri downloadUri = task.getResult();
-                        myUrl = downloadUri.toString();
-                    } else {
-
-                    }
-                }
-            }).addOnFailureListener(new OnFailureListener() {
-                @Override
-                public void onFailure(@NonNull Exception e) {
-
-                }
-            });
-        } else {
-
         }
     }
 
@@ -234,8 +209,7 @@ public class PicSearchFragment extends Fragment {
 //        @Override
 //        public void run() {
 //            try {
-//                // 10.0.2.2
-//                socket = new Socket("192.168.200.197", 5786);
+//                socket = new Socket("172.20.0.89", 5786);
 //                Log.d("TCP", "Success");
 //            } catch (Exception e) {
 //                Log.d("TCP", "Fail");
@@ -264,6 +238,7 @@ public class PicSearchFragment extends Fragment {
 //        }
 //    }
 
+    // socket
     public void upload() {
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Posts");
         reference.addValueEventListener(new ValueEventListener() {

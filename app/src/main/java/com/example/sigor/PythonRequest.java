@@ -11,10 +11,11 @@ public class PythonRequest extends StringRequest {
     final static private String URL = "http://angela22388.cafe24.com/python.php";
     private Map<String, String> parameters;
 
-    public PythonRequest(String search_img, Response.Listener<String> listener) {
+//    public PythonRequest(String search_img, Response.Listener<String> listener) {
+    public PythonRequest(Response.Listener<String> listener) {
         super(Request.Method.POST, URL, listener, null);
         parameters = new HashMap<>();
-        parameters.put("search_img", search_img);
+        // parameters.put("search_img", search_img);
     }
 
     @Override

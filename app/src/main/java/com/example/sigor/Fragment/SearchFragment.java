@@ -8,10 +8,8 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.os.Handler;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,11 +27,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
-import java.io.IOException;
-import java.net.Socket;
-import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -97,8 +90,10 @@ public class SearchFragment extends Fragment {
         photo_search.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Fragment selectedFragment = new PicSearchFragment();
-                ((MainActivity)getActivity()).onFragmentChanged(selectedFragment);
+                  Fragment selectedFragment = new AddSearchFragment();
+                 ((MainActivity)getActivity()).onFragmentChanged(selectedFragment);
+//                Intent intent = new Intent(getActivity(), AddSearchActivity.class);
+//                startActivity(intent);
             }
         });
 

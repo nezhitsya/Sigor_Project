@@ -110,7 +110,7 @@ public class AddStoryActivity extends AppCompatActivity {
             });
 
         } else {
-            Toast.makeText(AddStoryActivity.this, "No image selected", Toast.LENGTH_SHORT).show();
+            Toast.makeText(AddStoryActivity.this, "이미지를 선택해주세요.", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -126,7 +126,7 @@ public class AddStoryActivity extends AppCompatActivity {
             uploadImage_10();
 
         } else {
-            Toast.makeText(this, "Something gone wrong!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "다시 시도해주세요.", Toast.LENGTH_SHORT).show();
             startActivity(new Intent(AddStoryActivity.this, MainActivity.class));
             finish();
         }
