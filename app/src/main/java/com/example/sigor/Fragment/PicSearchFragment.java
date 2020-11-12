@@ -131,112 +131,46 @@ public class PicSearchFragment extends Fragment {
             }
         });
 
-        // cafe24
-        PythonThread thread = new PythonThread();
-        thread.start();
+        // socket
+       ClientThread thread = new ClientThread();
+       thread.start();
 
         return view;
     }
 
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        // socket
-//       ClientThread thread = new ClientThread();
-//       thread.start();
-    }
-
-    // cafe24
-    class PythonThread extends Thread {
+    // socket
+    class ClientThread extends Thread {
         @Override
         public void run() {
-            Response.Listener<String> responseListener = new Response.Listener<String>() {
-                @Override
-                public void onResponse(String response) {
-                    try {
-                        JSONObject jsonResponse = new JSONObject(response);
-                        String out_img = jsonResponse.getString("out_img");
-                        searchList = out_img.split(", ");
-                        myFotos(searchList);
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                        Log.d("TCP", "fail");
+            try {
+                socket = new Socket("169.254.11.228", 5786);
+                Log.d("TCP", "Success");
+            } catch (Exception e) {
+                Log.d("TCP", "Fail");
+                e.printStackTrace();
+            }
+            try {
+                dis = new DataInputStream(socket.getInputStream());
+            } catch (Exception e) {
+                Log.d("TCP", "Buffer Error");
+                e.printStackTrace();
+            }
+            Log.d("TCP", "Buffer Success");
+
+            while (true) {
+                try {
+                    while (dis.available() > 0) {
+                        piclist = dis.readUTF();
+                        upload();
+                        Log.d("TCP", "" + piclist);
                     }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    Log.d("TCP", "Finish");
                 }
-            };
-            PythonRequest pythonRequest = new PythonRequest(responseListener);
-            RequestQueue queue = Volley.newRequestQueue(getContext());
-            queue.add(pythonRequest);
+            }
         }
     }
-
-    // cafe24
-    private void myFotos(final String [] searchList) {
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Posts");
-        reference.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                finalList.clear();
-
-                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                    Post post = snapshot.getValue(Post.class);
-
-                    for(String spic : searchList) {
-                        spic = spic.replaceAll("'", "");
-                        spic = spic.replaceAll(" ", "");
-                        spic = spic.replaceAll("\\[", "");
-                        spic = spic.replaceAll("]", "");
-                        spic = spic.replaceAll(System.getProperty("line.separator"), "");
-                        if(post.getPostimage().equals(spic)) {
-                            finalList.add(post);
-                        }
-                    }
-                }
-                myFotoAdapter.notifyDataSetChanged();
-                progressBar.setVisibility(View.GONE);
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
-    }
-
-    // socket
-//    class ClientThread extends Thread {
-//        @Override
-//        public void run() {
-//            try {
-//                socket = new Socket("172.20.0.89", 5786);
-//                Log.d("TCP", "Success");
-//            } catch (Exception e) {
-//                Log.d("TCP", "Fail");
-//                e.printStackTrace();
-//            }
-//            try {
-//                dis = new DataInputStream(socket.getInputStream());
-//            } catch (Exception e) {
-//                Log.d("TCP", "Buffer Error");
-//                e.printStackTrace();
-//            }
-//            Log.d("TCP", "Buffer Success");
-//
-//            while (true) {
-//                try {
-//                    while (dis.available() > 0) {
-//                        piclist = dis.readUTF();
-//                        upload();
-//                        Log.d("TCP", "" + piclist);
-//                    }
-//                } catch (Exception e) {
-//                    e.printStackTrace();
-//                    Log.d("TCP", "Finish");
-//                }
-//            }
-//        }
-//    }
 
     // socket
     public void upload() {

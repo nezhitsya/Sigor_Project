@@ -17,6 +17,7 @@ import android.widget.ProgressBar;
 import com.example.sigor.Adapter.HomeAdapter;
 import com.example.sigor.Adapter.StoryAdapter;
 import com.example.sigor.ChatMainActivity;
+import com.example.sigor.MainActivity;
 import com.example.sigor.Model.Post;
 import com.example.sigor.Model.Story;
 import com.example.sigor.R;
@@ -80,6 +81,8 @@ public class HomeFragment extends Fragment {
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), ChatMainActivity.class);
                 startActivity(intent);
+//                Fragment selectedFragment = new ChatsFragment();
+//                ((MainActivity)getActivity()).onFragmentChanged(selectedFragment);
             }
         });
 
