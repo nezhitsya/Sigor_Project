@@ -2,6 +2,8 @@
 
 ## On-Device Dog Face Classification based on Android
 
+<img width="400" alt="1" src="https://user-images.githubusercontent.com/60697742/102072796-b7aa7800-3e45-11eb-9eba-3333d8cd8cd1.png">
+
 ### 로고
 
 <div style="width:200px; height:150px; margin:auto">
