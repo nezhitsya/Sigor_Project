@@ -11,4 +11,4 @@
 
 ### 어플 소개화면
 
-<img width="400" alt="1" src="https://user-images.githubusercontent.com/60697742/102069976-d575de00-3e41-11eb-8b9b-d945c1d18201.png">
+<img width="800" alt="1" src="https://user-images.githubusercontent.com/60697742/102069976-d575de00-3e41-11eb-8b9b-d945c1d18201.png">
