@@ -41,3 +41,11 @@
 ### 채팅 화면
 
 <img width = "400" alt="1" src="https://user-images.githubusercontent.com/60697742/102070157-12da6b80-3e42-11eb-93c8-3487ff43a250.png">
+
+
+### 스토리 기능
+
+<div style="width:200px; height:150px; margin:auto">
+  <img width="250" alt="1" src="https://user-images.githubusercontent.com/60697742/102070235-2dace000-3e42-11eb-81ef-2b6eb56a29f8.png">
+  <img width="200" alt="1" src="https://user-images.githubusercontent.com/60697742/102070230-2ab1ef80-3e42-11eb-9aa8-ef62811adda7.png">
+</div>
