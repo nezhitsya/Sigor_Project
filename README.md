@@ -2,7 +2,7 @@
 
 ## On-Device Dog Face Classification based on Android
 
-<img width="400" alt="1" src="https://user-images.githubusercontent.com/60697742/102072796-b7aa7800-3e45-11eb-9eba-3333d8cd8cd1.png">
+<img width="800" alt="1" src="https://user-images.githubusercontent.com/60697742/102072796-b7aa7800-3e45-11eb-9eba-3333d8cd8cd1.png">
 
 ### 로고
 
@@ -11,31 +11,31 @@
   <img width="200" alt="1" src="https://user-images.githubusercontent.com/60697742/102070009-e32b6380-3e41-11eb-868b-de31e75aa5c3.png">
 </div>
 
- <br><br>
+ <br>
 
 ### 어플 소개화면
 
 <img width="800" alt="1" src="https://user-images.githubusercontent.com/60697742/102069976-d575de00-3e41-11eb-8b9b-d945c1d18201.png">
 
- <br><br>
+ <br>
 
 ### 로그인 및 회원가입
 
 <img width = "400" alt="1" src="https://user-images.githubusercontent.com/60697742/102070022-e6265400-3e41-11eb-8d8b-5361ec8e7ba0.png">
 
- <br><br>
+ <br>
 
 ### 메인화면 및 게시물
 
 <img width = "400" alt="1" src="https://user-images.githubusercontent.com/60697742/102070087-fc341480-3e41-11eb-8881-840e2b9a059c.png">
 
- <br><br>
+ <br>
 
 ### 프로필 화면
 
 <img width = "400" alt="1" src="https://user-images.githubusercontent.com/60697742/102070095-00f8c880-3e42-11eb-8770-b3dc8655cb24.png">
 
- <br><br>
+ <br>
 
 ### 검색 화면
 
@@ -44,13 +44,13 @@
 
 <img width = "400" alt="1" src="https://user-images.githubusercontent.com/60697742/102070145-10781180-3e42-11eb-80c1-894b403e0907.png">
  
- <br><br>
+ <br>
  
 ### 채팅 화면
 
 <img width = "400" alt="1" src="https://user-images.githubusercontent.com/60697742/102070157-12da6b80-3e42-11eb-93c8-3487ff43a250.png">
 
- <br><br>
+ <br>
 
 ### 스토리 기능
 
