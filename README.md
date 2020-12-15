@@ -1,6 +1,6 @@
 # Sigor_Project
 
-## On-Device Dog Face Classification based on Android
+# On-Device Dog Face Classification based on Android
 
 <br>
 
